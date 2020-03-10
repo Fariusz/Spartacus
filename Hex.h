@@ -1,17 +1,17 @@
 #pragma once
 class Hex
 {
-private:
-        bool moveAllowed;
-	bool occupiedByPlayer;
+	private:
+		bool moveAllowed;
+		bool occupiedByPlayer;
 
-public:
+	public:
+		bool isMoveAllowed();
+		void setMove(bool move);
 
-        Hex();
-	bool isMoveAllowed();
-	void setMove(bool move);
-	bool isOccupiedByPlayer();
-	void setOccupation(bool occupation);
-        ~Hex();
+		bool isOccupiedByPlayer();
+		void setOccupation(bool occupation);
+
+		Hex();
 };
 

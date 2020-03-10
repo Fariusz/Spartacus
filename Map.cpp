@@ -1,8 +1,8 @@
+#include <iostream>
 #include "Map.h"
 
-Map *Map::m_instance = nullptr;
-
-Map::Map() {
+Map::Map()
+{
 	int j = 1, kol = 7;
 	for (int i = 0; i < 10; i++)
 	{
@@ -15,9 +15,7 @@ Map::Map() {
 	for (int i = 0; i < kol; i++)
 	{
 		tab[9][i].setMove(false);
-	}  
-
-
+	}
 }
 
 void Map::printTab()
@@ -35,9 +33,7 @@ void Map::printTab()
 		if (kol == 11)z = -1;
 	}
 }
-Map::~Map() {
-	// usunac pointery
-}
+
 bool Map::getMove(int i, int j, bool &NW, bool &W, bool &SW, bool &NE, bool &E, bool &SE)
 {
 	if (!isMoveOutOfBound(i, j))
@@ -65,6 +61,7 @@ bool Map::getMove(int i, int j, bool &NW, bool &W, bool &SW, bool &NE, bool &E, 
 
 	return false;
 }
+
 bool Map::isMoveOutOfBound(int i, int j)
 {
 	if (i < 0 || j < 0 || !tab[i][j].isMoveAllowed())
@@ -73,10 +70,4 @@ bool Map::isMoveOutOfBound(int i, int j)
 	}
 
 	else return false;
-}
-Map* Map::getInstance(){
-	if(m_instance == nullptr){
-		m_instance = new Map;
-	}
-	return m_instance;
 }
