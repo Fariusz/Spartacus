@@ -2,12 +2,16 @@
 class Hex
 {
 private:
-        int i, j;
-        Hex *NE, *E, *SE, *SW, *W, *NW;
+        bool moveAllowed;
+	bool occupiedByPlayer;
 
 public:
 
         Hex();
+	bool isMoveAllowed();
+	void setMove(bool move);
+	bool isOccupiedByPlayer();
+	void setOccupation(bool occupation);
         ~Hex();
 };
 

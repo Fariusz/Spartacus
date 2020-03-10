@@ -1,46 +1,45 @@
 #include "Object.h"
-void Object::set_value(short i_value)
+void Object::setValue(short i_value)
 {
         m_value = (i_value > 0) ? i_value : 0;
 }
 
-short Object::get_value()
+short Object::getValue()
 {
         return m_value;
 }
 
-std::string Object::get_name()
+const std::string &Object::getName()
 {
         return m_name;
 }
 
-void Object::set_atack(short value)
+void Object::setAttack(short i_value)
 {
-        m_atack = (value > 0) ? value : 1;
+        m_attack = (i_value > 0) ? i_value : 1;
 }
 
-void Object::set_defense(short value)
+void Object::setDefense(short i_value)
 {
-        m_defense = (value > 0) ? value : 1;
+        m_defense = (i_value > 0) ? i_value : 1;
 }
 
-void Object::set_speed(short value)
+void Object::setSpeed(short i_value)
 {
-        m_speed = (value > 0) ? value : 1;
+        m_speed = (i_value > 0) ? i_value : 1;
 }
 
-
-short Object::get_atack()
+short Object::getAttack()
 {
-        return m_atack;
+        return m_attack;
 }
 
-short Object::get_defense()
+short Object::getDefense()
 {
         return m_defense;
 }
 
-short Object::get_speed()
+short Object::getSpeed()
 {
         return m_speed;
 }
