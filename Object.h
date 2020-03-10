@@ -1,4 +1,4 @@
-#pragma
+#pragma once
 #include<string>
 class Object {                         
 private:
@@ -9,23 +9,23 @@ private:
         short m_speed;
 protected:
         Object(const std::string &i_name, short i_value, short i_attack, short i_defense, short i_speed){
-                set_value(i_value);
-                set_name(i_name);
-                set_attack(i_attack);
-                set_defense(i_defense);
-                set_speed(i_speed);
+                setValue(i_value);
+                setName(i_name);
+                setAttack(i_attack);
+                setDefense(i_defense);
+                setSpeed(i_speed);
         }
 public:
-        void set_value(short value);
-        short get_value();
-        void std::string set_name(const &name);
-        const std::string &get_name();
-        void set_attack(short damage);
-        void set_defense(short defense);
-        void set_speed(short speed);
-        short get_attack();
-        short get_defense();
-        short get_speed();
+        void setValue(short i_value);
+        short getValue();
+        const std::string setName(const std::string &i_name);
+        const std::string &getName();
+        void setAttack(short i_damage);
+        void setDefense(short i_defense);
+        void setSpeed(short i_speed);
+        short getAttack();
+        short getDefense();
+        short getSpeed();
         virtual ~Object();
 };
 

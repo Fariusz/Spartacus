@@ -1,21 +1,18 @@
 #include "Character.h"
 
-
-
-    
-
-void Character::set_position(short x, short y)
+void Character::setPosition(short x, short y)
 {
-
+	m_position.x = x;
+	m_position.y = y;
 }
 
 
-Type Character::get_type()
+Type Character::getType()
 {
         return m_type;
 }
 
-Position Character::get_position()
+Position Character::getPosition()
 {
         return m_position;
 }
