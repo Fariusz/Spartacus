@@ -13,6 +13,7 @@ void set_black_cube(int y){
             delete[] m_defense;
             *m_defense = new int[y];
             m_black_cube = y;
+//dg
         }
     }
 }
