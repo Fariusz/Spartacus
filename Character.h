@@ -1,20 +1,11 @@
 #pragma
 #include <string>
 #include "Object.h"
+#include "CommonTypes.h"
 
 enum Type{ 
 	gladiator, 
 	slave 
-};
-enum CubeColor{
-	red, 
-	black, 
-	blue
-};
-
-struct Position {
-	int x;
-	int y;
 };
 
 class Character : Object {
