@@ -1,59 +1,70 @@
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
+#include "cube.h"
+Cube(int i_red_cube, int i_black_cube, int i_blue_cube){
+    m_black_cube = i_black_cube;
+    m_red_cube = i_red_cube;
+    m_blue_cube = i_blue_cube;
+    *m_defense = new int[m_black_cube];
+    *m_attack = new int[m_red_cube];
+}
 
-using namespace std;
+void set_black_cube(int y){
+    if( y != m_black_cube){
+        if(y > 0){
+            delete[] m_defense;
+            *m_defense = new int[y];
+            m_black_cube = y;
+//dg
+        }
+    }
+}
 
-class Cube {
-private:
-	int m_red_cube = 5;
-	int m_black_cube = 4;
-	int *attack = new int[m_red_cube];
-	int *defense = new int[m_black_cube];
-public:
-	void set_red_cube(int x) {
-		m_red_cube = x;
-	}
-	void set_balck_cube(int y) {
-		m_black_cube = y;
-	}
-	void randomization_cube() {
+void set_red_cube(int x){
+    if( x != m_red_cube){
+        if(x > 0){
+            delete[] m_attack;
+            *m_attack = new int[x];
+            m_red_cube = x;
+        }
+    }
+}
 
-		if (m_black_cube < m_red_cube) {
-			for (int i = 0; i < m_red_cube; i++) {
-				if (i < m_black_cube) {
-					defense[i] = rand() % 6 + 1;
-				}
-				attack[i] = rand() % 6 + 1;
-			}
-		}
-		else {
-			for (int i = 0; i < m_black_cube; i++) {
-				if (i < m_red_cube) {
-					attack[i] = rand() % 6 + 1;
-				}
-				defense[i] = rand() % 6 + 1;
-			}
-		}
+void randomization_cube() {
 
-		for (int i = 0; i < m_red_cube - 1; i++) {
-			for (int j = i + 1; j < m_red_cube; j++) {
-				if (attack[i] < attack[j]) {
-					swap(attack[i], attack[j]);
-				}
-			}
-		}
-		for (int i = 0; i < m_black_cube - 1; i++) {
-			for (int j = i + 1; j < m_black_cube; j++) {
-				if (defense[i] < defense[j]) {
-					swap(defense[i], defense[j]);
-				}
-			}
-		}
+    if (m_black_cube < m_red_cube) {
+        for (int i = 0; i < m_red_cube; i++) {
+            if (i < m_black_cube) {
+                defense[i] = rand() % 6 + 1;
+            }
+            attack[i] = rand() % 6 + 1;
+        }
+    } else {
+        for (int i = 0; i < m_black_cube; i++) {
+            if (i < m_red_cube) {
+                attack[i] = rand() % 6 + 1;
+            }
+            defense[i] = rand() % 6 + 1;
+        }
+    }
 
-	}
+    for (int i = 0; i < m_red_cube - 1; i++) {
+        for (int j = i + 1; j < m_red_cube; j++) {
+            if (attack[i] < attack[j]) {
+                swap(attack[i], attack[j]);
+            }
+        }
+    }
+    for (int i = 0; i < m_black_cube - 1; i++) {
+        for (int j = i + 1; j < m_black_cube; j++) {
+            if (defense[i] < defense[j]) {
+                swap(defense[i], defense[j]);
+            }
+        }
+    }
 
-	int combat_mode() {
+}
+
+/*
+int combat_mode() {
 
 		int i_defense = 0;
 		int i_max, i_min;
@@ -76,52 +87,50 @@ public:
 				i_defense++;
 			}
 		}
-	}
-};
+
+}
+ */
 
 int blue_cube(int cube1, int cube2) {
 
-	int sum1 = 0, sum2 = 0;
+    int sum1 = 0, sum2 = 0;
 
-	if (cube1 <= cube2) {
-		for (int i = 0; i < cube2; i++) {
-			if (i < cube1) {
-				sum1 += rand() % 6 + 1;
-			}
-			sum2 += rand() % 6 + 1;
-		}
-	}
-	else {
-		for (int i = 0; i < cube1; i++) {
-			if (i < cube2) {
-				sum2 += rand() % 6 + 1;
-			}
-			sum1 += rand() % 6 + 1;
-		}
-	}
+    if (cube1 <= cube2) {
+        for (int i = 0; i < cube2; i++) {
+            if (i < cube1) {
+                sum1 += rand() % 6 + 1;
+            }
+            sum2 += rand() % 6 + 1;
+        }
+    } else {
+        for (int i = 0; i < cube1; i++) {
+            if (i < cube2) {
+                sum2 += rand() % 6 + 1;
+            }
+            sum1 += rand() % 6 + 1;
+        }
+    }
 
-	if (sum1 < sum2) {
-		return 2;
-	}
-	else if (sum1 > sum2) {
-		return 1;
-	}
-	else {
-		return blue_cube(cube1, cube2);
-	}
+    if (sum1 < sum2) {
+        return 2;
+    } else if (sum1 > sum2) {
+        return 1;
+    } else {
+        return blue_cube(cube1, cube2);
+    }
 
 }
 
 void main() {
-	srand(time(0));
+    srand(time(0));
 
-	int num_cube_player_1 = 1, num_cube_player_2 = 1;
+    int num_cube_player_1 = 1, num_cube_player_2 = 1;
 
-	cout << blue_cube(num_cube_player_1, num_cube_player_2) << endl;
+    cout << blue_cube(num_cube_player_1, num_cube_player_2) << endl;
 
-	Cube player_1;
+    Cube player_1;
 
-	player_1.randomization_cube();
+    player_1.randomization_cube();
 
-	system("pause");
+    system("pause");
 }
