@@ -1,62 +1,61 @@
-#include "cube.h"
-Cube(int i_red_cube, int i_black_cube, int i_blue_cube){
+#include "Cube.h"
+Cube::Cube(int i_red_cube, int i_black_cube, int i_blue_cube){
     m_black_cube = i_black_cube;
     m_red_cube = i_red_cube;
     m_blue_cube = i_blue_cube;
-    *m_defense = new int[m_black_cube];
-    *m_attack = new int[m_red_cube];
+    m_defense = new int[m_black_cube];
+    m_attack = new int[m_red_cube];
 }
 
-void set_black_cube(int y){
+void Cube::set_black_cube(int y){
     if( y != m_black_cube){
         if(y > 0){
             delete[] m_defense;
-            *m_defense = new int[y];
+            m_defense = new int[y];
             m_black_cube = y;
-//dg
         }
     }
 }
 
-void set_red_cube(int x){
+void Cube::set_red_cube(int x){
     if( x != m_red_cube){
         if(x > 0){
             delete[] m_attack;
-            *m_attack = new int[x];
+            m_attack = new int[x];
             m_red_cube = x;
         }
     }
 }
 
-void randomization_cube() {
+void Cube::randomization_cube() {
 
     if (m_black_cube < m_red_cube) {
         for (int i = 0; i < m_red_cube; i++) {
             if (i < m_black_cube) {
-                defense[i] = rand() % 6 + 1;
+                m_defense[i] = rand() % 6 + 1;
             }
-            attack[i] = rand() % 6 + 1;
+            m_attack[i] = rand() % 6 + 1;
         }
     } else {
         for (int i = 0; i < m_black_cube; i++) {
             if (i < m_red_cube) {
-                attack[i] = rand() % 6 + 1;
+               m_attack[i] = rand() % 6 + 1;
             }
-            defense[i] = rand() % 6 + 1;
+            m_defense[i] = rand() % 6 + 1;
         }
     }
 
     for (int i = 0; i < m_red_cube - 1; i++) {
         for (int j = i + 1; j < m_red_cube; j++) {
-            if (attack[i] < attack[j]) {
-                swap(attack[i], attack[j]);
+            if (m_attack[i] < m_attack[j]) {
+                swap(m_attack[i], m_attack[j]);
             }
         }
     }
     for (int i = 0; i < m_black_cube - 1; i++) {
         for (int j = i + 1; j < m_black_cube; j++) {
-            if (defense[i] < defense[j]) {
-                swap(defense[i], defense[j]);
+            if (m_defense[i] < m_defense[j]) {
+                swap(m_defense[i], m_defense[j]);
             }
         }
     }
@@ -91,7 +90,7 @@ int combat_mode() {
 }
  */
 
-int blue_cube(int cube1, int cube2) {
+int Cube::blue_cube(int cube1, int cube2) {
 
     int sum1 = 0, sum2 = 0;
 
@@ -120,7 +119,7 @@ int blue_cube(int cube1, int cube2) {
     }
 
 }
-
+/*
 void main() {
     srand(time(0));
 
@@ -133,4 +132,4 @@ void main() {
     player_1.randomization_cube();
 
     system("pause");
-}
+}*/
